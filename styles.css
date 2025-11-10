@@ -1,18 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Bitcount+Grid+Single:wght@100..900&family=Bungee+Spice&display=swap');
 
 :root {
-    color-scheme: light dark;
+    --text: #eaf0f1;
+    --background: #1a2227;
+    --primary: #578594;
+    --secondary: #365863;
+    --accent: #3e6c7a;
 }
 
-:root {
-    --text: light-dark(#eaf0f1, #0e1415);
-    --background: light-dark(#1a2227, #e0f1f9);
-    --primary: light-dark(#578594, #6b9aa9);
-    --secondary: light-dark(#365863, #9dbfc9);
-    --accent: light-dark(#3e6c7a, #84b3c1);
-}
-
-:root:has(#theme-toggle:checked) {
+[data-theme="light"] {
     --text: #0e1415;
     --background: #e0f1f9;
     --primary: #6b9aa9;
@@ -20,7 +16,7 @@
     --accent: #84b3c1;
 }
 
-:root:has(#theme-toggle:not(:checked)) {
+[data-theme="dark"] {
     --text: #eaf0f1;
     --background: #1a2227;
     --primary: #578594;

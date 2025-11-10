@@ -28,7 +28,7 @@
             </ul>
 
             <div class="theme-toggle-wrapper">
-                <input type="checkbox" id="theme-toggle">
+                <input type="checkbox" id="theme-toggle" aria-label="Toggle theme">
                 <label for="theme-toggle" class="theme-toggle-label"></label>
             </div>
         </nav>
@@ -47,17 +47,9 @@
         <hello-world></hello-world>
     </main>
 
-    <script>
-        class HelloWorld extends HTMLElement {
-            connectedCallback() {
-                console.log('Hello world!');
-            }
-        }
-
-        customElements.define('hello-world', HelloWorld);
-    </script>
+    <script src="/scripts/theme.js"></script>
     <noscript>
-        <p>Please enable JavaScript to view this content.</p>
+        <p>JavaScript is required to toggle themes and persist your preference.</p>
     </noscript>
     <footer>
         <p>&copy; 2025 Albert Ho. All rights reserved.</p>
