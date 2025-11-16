@@ -1,28 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Bitcount+Grid+Single:wght@100..900&family=Bungee+Spice&display=swap');
 
 :root {
-    --text: #eaf0f1;
-    --background: #1a2227;
-    --primary: #578594;
-    --secondary: #365863;
-    --accent: #3e6c7a;
+  --text: #0c0d0e;
+  --background: #f9fafb;
+  --primary: #6085a9;
+  --secondary: #a2bcd8;
+  --accent: #73a2d3;
 }
 
-[data-theme="light"] {
-    --text: #0e1415;
-    --background: #e0f1f9;
-    --primary: #6b9aa9;
-    --secondary: #9dbfc9;
-    --accent: #84b3c1;
+:root[data-theme="light"] {
+  --text: #0c0d0e;
+  --background: #f9fafb;
+  --primary: #6085a9;
+  --secondary: #a2bcd8;
+  --accent: #73a2d3;
+}
+:root[data-theme="dark"] {
+  --text: #f1f2f3;
+  --background: #040506;
+  --primary: #567a9f;
+  --secondary: #27415d;
+  --accent: #2c5a8c;
 }
 
-[data-theme="dark"] {
-    --text: #eaf0f1;
-    --background: #1a2227;
-    --primary: #578594;
-    --secondary: #365863;
-    --accent: #3e6c7a;
-}
 
 @keyframes showLine {
     to {
@@ -78,29 +78,6 @@
     100% {
         overflow: visible;
     }
-}
-
-@keyframes swipeLeftOut {
-  0% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(-100%);
-    opacity: 0;
-    visibility: hidden;
-  }
-}
-
-@keyframes swipeLeftIn {
-  0% {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-  }
 }
 
 html, body {
@@ -194,7 +171,7 @@ html, body {
     body {
         display: flex;
         flex-direction: column;
-        min-height: 100dvh;
+        min-height: 100vh;
         animation: preventScroll 7.3sec;
         animation: swipeLeftIn 0.5s ease forwards;
 
@@ -302,6 +279,32 @@ html, body {
             padding: 2rem;
             transition: background-color 0.6s ease;
         }
+
+        main.resume-main {
+            flex: 1; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center; 
+            align-items: center;  
+            padding: 2rem 1rem;
+            background-color: var(--background);
+            color: var(--text);
+
+            .resume-section {
+                width: 100%;
+                max-width: 900px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .entry {
+                width: 100%;
+                max-width: 700px;
+                margin: 0 auto; 
+            }
+        }
+
 
         @media (max-width: 700px) {
             nav {
