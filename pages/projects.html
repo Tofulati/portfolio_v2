@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Albert Ho's Portfolio Page</title>
+    <title>Albert Ho's Portfolio Page - Projects</title>
     <link rel="stylesheet" href="/styles.css">
     <link rel="stylesheet" href="/styles/projects.css">
     <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
@@ -19,40 +19,81 @@
                 <li><a href="/pages/resume.html">Resume</a></li>
                 <li><a href="/pages/contact.html">Contact</a></li>
             </ul>
-            
             <div class="theme-toggle-wrapper">
                 <input type="checkbox" id="theme-toggle" aria-label="Toggle theme">
                 <label for="theme-toggle" class="theme-toggle-label"></label>
             </div>
         </nav>
     </header>
-    <main>
-        <div class="project-container">
-            <project-card>
-                <h3>Residual Network Stock Predictor</h3>
+
+    <main class="projects-main">
+        <section class="projects-section">
+            <div class="project-entry">
+                <div class="entry-header">
+                    <h3>Residual Network Stock Predictor</h3>
+                    <span class="date">January 2025</span>
+                </div>
+                <ul>
+                    <li>Designed and implemented a residual neural network from scratch to predict real-time S&P 500 readings, achieving results within 5% of state-of-the-art baselines in stock price forecasting.</li>
+                    <li>Utilized the yfinance API to retrieve real-time data and processed financial data using Pandas and NumPy.</li>
+                </ul>
+                <div class="tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">Pandas</span>
+                    <span class="tag">NumPy</span>
+                    <span class="tag">Sklearn</span>
+                    <span class="tag">yfinance</span>
+                </div>
                 <picture>
-                    <source srcset="">
                     <img src="/assets/images/stock.jpg" alt="Residual Network Stock Predictor Screenshot">
                 </picture>
-                <p>Designed and implemented a residual neural network from scratch to predict real-time S&P 500 readings, achieving results within 5% of state-of-the-art baselines in stock price forecasting.</p>
-            </project-card>
-            <project-card>
-                <h3>MewsiCat</h3>
+            </div>
+
+            <div class="project-entry">
+                <div class="entry-header">
+                    <h3>MewsiCat</h3>
+                    <span class="date">November 2023 - May 2024</span>
+                </div>
+                <ul>
+                    <li>Implemented a mobile social networking application incorporating the Spotify API and interactive sprites/modules.</li>
+                    <li>Guided a team of four to create and design the mobile application’s user interface and experience (UX/UI).</li>
+                    <li>Developed full-stack integration for data processing and retrieval through AWS, JavaScript, and Python scripts.</li>
+                </ul>
+                <div class="tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">JavaScript</span>
+                    <span class="tag">React Native</span>
+                    <span class="tag">AWS</span>
+                    <span class="tag">Expo</span>
+                </div>
                 <picture>
-                    <source srcset="">
                     <img src="/assets/images/mewsicat.jpg" alt="MewsiCat Screenshot">
                 </picture>
-                <p>Designed and developed a social media music app aimed at creating interactive music sharing experiences with cats. Inspired by neko atsume.</p>
-            </project-card>
-            <project-card>
-                <h3>EarthEquity</h3>
+            </div>
+
+            <div class="project-entry">
+                <div class="entry-header">
+                    <h3>Earth Equity</h3>
+                    <span class="date">October 2023</span>
+                </div>
+                <ul>
+                    <li>Led a team of 5 to develop a full-stack web application for NASA Space Apps Hackathon; leveraging NASA time-series datasets through stock market trend indicators for data visualization.</li>
+                    <li>Integrated interactive database displays and modules utilizing React framework, Tailwind CSS, and D3.js.</li>
+                    <li>Incorporated data from Python data-scraping algorithms using JavaScript scripts.</li>
+                    <li>Presented the finalized web application and explained implementation to a panel of professionals.</li>
+                </ul>
+                <div class="tags">
+                    <span class="tag">React</span>
+                    <span class="tag">JavaScript</span>
+                    <span class="tag">HTML</span>
+                    <span class="tag">Tailwind CSS</span>
+                    <span class="tag">D3.js</span>
+                </div>
                 <picture>
-                    <source srcset="">
                     <img src="/assets/images/nasa_space.jpg" alt="EarthEquity Screenshot">
                 </picture>
-                <p>Led a team of 5 to develop a full-stack web application for NASA Space Apps Hackathon; leveraging NASA time-series datasets through stock market trend indicators for data visualization.</p>
-            </project-card>
-        </div>
+            </div>
+        </section>
 
         <span id="notice">
             <strong>Note:</strong><i> Page is still under construction.</i>
@@ -64,6 +105,7 @@
     <noscript>
         <p>JavaScript is required to toggle themes and persist your preference.</p>
     </noscript>
+
     <footer>
         <p>&copy; 2025 Albert Ho. All rights reserved.</p>
     </footer>
