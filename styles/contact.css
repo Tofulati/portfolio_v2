@@ -47,6 +47,7 @@ main {
                 color: var(--text);
                 width: 100%;
                 transition: border-color 0.3s, background-color 0.3s;
+                font-family: Helvetica, Arial, sans-serif;
 
                 &:focus {
                     outline: none;

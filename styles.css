@@ -80,6 +80,27 @@
     }
 }
 
+.page-transition-top,
+.page-transition-bottom {
+    position: fixed;
+    left: 0;
+    width: 100%;
+    background: black;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+/* top starts below header */
+.page-transition-top {
+    top: 0;
+}
+
+/* bottom starts above footer */
+.page-transition-bottom {
+    bottom: 0;
+}
+
+
 html, body {
     background-color: var(--background);
     color: var(--text);
@@ -174,9 +195,10 @@ html, body {
         min-height: 100vh;
         animation: preventScroll 7.3sec;
         animation: swipeLeftIn 0.5s ease forwards;
+        cursor: none;
 
         & header {
-            background: color-mix(in oklch, var(--primary), black 20%);
+            background: linear-gradient(to bottom, var(--primary) 0%, var(--background) 100%);
             color: var(--background);
             padding: 1rem 2rem;
             text-align: center;
@@ -233,7 +255,7 @@ html, body {
 
                     & a.active {
                         font-weight: bold;
-                        color: var(--secondary);
+                        color: var(--primary);
                     }
                 }
             }
@@ -362,8 +384,22 @@ html, body {
             }
         }
 
+        #cursor-bubble {
+            position: fixed;
+            pointer-events: none;
+            width: 20px;
+            height: 20px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s ease-out, width 0.1s ease, height 0.1s ease, opacity 0.2s ease;
+            z-index: 9999;
+            mix-blend-mode: difference; /* optional for nice effect */
+        }
+
+
         & footer {
-            background: color-mix(in oklch, var(--primary), black 25%);
+            background: linear-gradient(to top, var(--primary) 0%, var(--background) 100%);
             color: var(--text);
             text-align: center;
             padding: 1rem;
