@@ -32,7 +32,7 @@
             <p>
                 Have any inquries? Feel free to send me a message!
             </p>
-            <form action="https://httpbin.org/post" method="POST" novalidate>
+            <form id="contactForm" novalidate>
                 <fieldset>
                     <legend class="required">Send a Message</legend>
 
@@ -65,6 +65,27 @@
     <script src="/scripts/theme.js"></script>
     <script src="/scripts/bubble.js"></script>
     <script src="/scripts/view-transition.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function(){
+            emailjs.init("IM2LGsNo1BJStRkU3"); 
+        })();
+
+        const form = document.getElementById('contactForm');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); 
+
+            emailjs.sendForm('service_8iobe6h', 'template_g6oa9e9', form)
+            .then(() => {
+                alert('Message sent successfully!');
+                form.reset();
+            })
+            .catch((error) => {
+                alert('Failed to send message: ' + JSON.stringify(error));
+            });
+        });
+    </script>
     <noscript>
         <p>JavaScript is required to toggle themes and persist your preference.</p>
     </noscript>
