@@ -1,88 +1,89 @@
-// create overlays once
-const topOverlay = document.createElement('div');
-topOverlay.className = 'page-transition-top';
-const bottomOverlay = document.createElement('div');
-bottomOverlay.className = 'page-transition-bottom';
-document.body.appendChild(topOverlay);
-document.body.appendChild(bottomOverlay);
+document.addEventListener("DOMContentLoaded", () => {
 
-function setOverlayPositions() {
-    const header = document.querySelector('header');
-    const footer = document.querySelector('footer');
-    const viewportHeight = window.innerHeight;
+    const topOverlay = document.createElement('div');
+    topOverlay.className = 'page-transition-top';
+    const bottomOverlay = document.createElement('div');
+    bottomOverlay.className = 'page-transition-bottom';
+    document.body.appendChild(topOverlay);
+    document.body.appendChild(bottomOverlay);
 
-    // top overlay: below header
-    topOverlay.style.top = `${header.offsetHeight}px`;
+    function setOverlayPositions() {
+        const header = document.querySelector('header');
+        const footer = document.querySelector('footer');
+        if (!header || !footer) return;
 
-    // bottom overlay: start at footer if visible, else bottom of viewport
-    const footerRect = footer.getBoundingClientRect();
-    const footerInView = footerRect.top < viewportHeight && footerRect.bottom >= 0;
-    const bottomStart = footerInView ? viewportHeight - footerRect.top : 0;
-    bottomOverlay.style.bottom = `${bottomStart}px`;
-}
+        const viewportHeight = window.innerHeight;
+        topOverlay.style.top = `${header.offsetHeight}px`;
 
-// Animate "closing" transition for page navigation
-function closeTransition(callback) {
-    const header = document.querySelector('header');
-    const viewportHeight = window.innerHeight;
-    const targetHeight = (viewportHeight - header.offsetHeight) / 2;
+        const footerRect = footer.getBoundingClientRect();
+        const footerInView = footerRect.top < viewportHeight && footerRect.bottom >= 0;
+        const bottomStart = footerInView ? viewportHeight - footerRect.top : 0;
+        bottomOverlay.style.bottom = `${bottomStart}px`;
+    }
 
-    setOverlayPositions();
+    function closeTransition(callback) {
+        const header = document.querySelector('header');
+        if (!header) return;
 
-    // start from height 0
-    topOverlay.style.transition = 'none';
-    bottomOverlay.style.transition = 'none';
-    topOverlay.style.height = '0px';
-    bottomOverlay.style.height = '0px';
+        const viewportHeight = window.innerHeight;
+        const targetHeight = (viewportHeight - header.offsetHeight) / 2;
 
-    // Force browser to register initial height
-    requestAnimationFrame(() => {
-        topOverlay.style.transition = 'height 0.6s ease';
-        bottomOverlay.style.transition = 'height 0.6s ease';
-        topOverlay.style.height = `${targetHeight}px`;
-        bottomOverlay.style.height = `${targetHeight}px`;
-    });
+        setOverlayPositions();
 
-    setTimeout(() => {
-        if (callback) callback();
-    }, 600);
-}
-
-// Animate "opening" transition on page load (bars collapse outward)
-function openTransition() {
-    const header = document.querySelector('header');
-    const viewportHeight = window.innerHeight;
-    const targetHeight = (viewportHeight - header.offsetHeight) / 2;
-
-    setOverlayPositions();
-
-    // start overlays at full height
-    topOverlay.style.height = `${targetHeight}px`;
-    bottomOverlay.style.height = `${targetHeight}px`;
-    topOverlay.style.transition = 'none';
-    bottomOverlay.style.transition = 'none';
-
-    // Animate open to 0
-    requestAnimationFrame(() => {
-        topOverlay.style.transition = 'height 0.6s ease';
-        bottomOverlay.style.transition = 'height 0.6s ease';
+        topOverlay.style.transition = 'none';
+        bottomOverlay.style.transition = 'none';
         topOverlay.style.height = '0px';
         bottomOverlay.style.height = '0px';
+
+        requestAnimationFrame(() => {
+            topOverlay.style.transition = 'height 0.6s ease';
+            bottomOverlay.style.transition = 'height 0.6s ease';
+            topOverlay.style.height = `${targetHeight}px`;
+            bottomOverlay.style.height = `${targetHeight}px`;
+        });
+
+        setTimeout(() => callback?.(), 600);
+    }
+
+    function openTransition() {
+        const header = document.querySelector('header');
+        if (!header) return;
+
+        const viewportHeight = window.innerHeight;
+        const targetHeight = (viewportHeight - header.offsetHeight) / 2;
+
+        setOverlayPositions();
+
+        topOverlay.style.transition = 'none';
+        bottomOverlay.style.transition = 'none';
+        topOverlay.style.height = `${targetHeight}px`;
+        bottomOverlay.style.height = `${targetHeight}px`;
+
+        requestAnimationFrame(() => {
+            topOverlay.style.transition = 'height 0.6s ease';
+            bottomOverlay.style.transition = 'height 0.6s ease';
+            topOverlay.style.height = '0px';
+            bottomOverlay.style.height = '0px';
+        });
+    }
+
+    openTransition();
+
+    document.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', e => {
+            const url = new URL(link.href);
+
+            if (
+                link.target === '_blank' ||
+                url.protocol === 'mailto:' ||
+                url.hash ||
+                url.host !== window.location.host
+            ) return; 
+
+            e.preventDefault();
+            closeTransition(() => window.location.href = link.href);
+        });
     });
-}
 
-// Trigger open animation on page load
-window.addEventListener('DOMContentLoaded', openTransition);
-
-// Attach close transition to links
-document.querySelectorAll('a').forEach(link => {
-    if (link.target === '_blank' || link.href.startsWith('mailto:')) return;
-
-    link.addEventListener('click', e => {
-        e.preventDefault();
-        closeTransition(() => window.location.href = link.href);
-    });
+    window.addEventListener('resize', setOverlayPositions);
 });
-
-// Update overlay positions on resize
-window.addEventListener('resize', setOverlayPositions);
