@@ -108,6 +108,20 @@ picture img {
     border-radius: 0.5rem;
 }
 
+.redirect-btn {
+    margin-top: 1rem;
+    padding: 0.6rem 1.1rem;
+    background: var(--primary);
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+
+    a {
+        color: var(--text);
+        text-decoration: none;
+    }
+}
+
 @media (max-width: 700px) {
     .project-entry {
         padding: 1.5rem 1rem;
