@@ -88,7 +88,7 @@ research-card .date {
     color: var(--text);
     opacity: 0.8;
     font-style: italic;
-    white-space: nowrap;
+    flex-wrap: wrap;
 }
 
 research-card ul {
